@@ -15,7 +15,10 @@
     "ptt",
     "parser"
   ],
-  "author": "lycheeee",
+  "authors": [
+    "Jason C. Huang <chaoju.huang@gmail.com> (https://github.com/kaddopur)",
+    "Tom Wu <tom76kimo@gmail.com> (https://github.com/tom76kimo)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lycheeee/lychee-node/issues"
