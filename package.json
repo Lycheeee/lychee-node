@@ -4,6 +4,7 @@
   "description": "An open source parser for PTT.",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node index.js",
     "test": "mocha --compilers js:babel/register --recursive"
   },
   "repository": {
@@ -35,5 +36,8 @@
     "mocha": "^2.2.5",
     "rimraf": "^2.3.4",
     "webpack": "^1.9.6"
+  },
+  "dependencies": {
+    "telnet-client": "^0.4.2"
   }
 }
