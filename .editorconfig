@@ -14,8 +14,5 @@ trim_trailing_whitespace = true
 max_line_length = 0
 trim_trailing_whitespace = false
 
-[*.json]
-indent_size = 4
-
 [COMMIT_EDITMSG]
 max_line_length = 0
