@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
-    "test": "mocha --compilers js:babel/register --recursive",
+    "test": "mocha tests --compilers js:babel/register --recursive",
+    "test:watch": "npm test -- --watch --reporter dot",
     "lint": "eslint .",
-    "validate": "npm ls"
+    "validate": "npm ls",
+    "docs": "jsdoc src -r -d docs"
   },
   "repository": {
     "type": "git",
