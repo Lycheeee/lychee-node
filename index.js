@@ -1,8 +1,10 @@
 import Lychee from './src/lychee';
 
+require('dotenv').config();
+
 const ptt = new Lychee({
-  username: 'username',
-  password: 'password',
+  username: process.env.USERNAME,
+  password: process.env.PASSWORD,
 });
 
 ptt.connect();
