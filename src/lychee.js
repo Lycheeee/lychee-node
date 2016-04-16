@@ -15,14 +15,25 @@ class Lychee {
 
     this._username = username;
     this._password = password;
-    this._connection = null;
   }
 
-  connect() {
-    // TODO: clean up possibily old connection
+  /**
+   * Set up connection
+   * @param {boolean} refresh - The flag to indicate whether connection should be re-init or not
+   */
+  connect(refresh) {
+    if (this._connection) {
+      if (!refresh) {
+        return;
+      }
+      this.disconnect();
+    }
     this._connection = new Connection();
   }
 
+  /**
+   * Tear down connection
+   */
   disconnect() {
     this._connection.end();
     delete this._connection;

@@ -51,7 +51,18 @@ describe('Lychee', () => {
       expect(ptt._connection).toBeA(Connection);
     });
 
-    it('should set up a new connection when making multiple calls', () => {
+    it('should set up a new connection when making multiple calls with refresh', () => {
+      ptt.connect(true);
+      const oldConnection = ptt._connection;
+
+      ptt.connect(true);
+      const newConnection = ptt._connection;
+
+      expect(newConnection).toBeA(Connection);
+      expect(newConnection !== oldConnection).toEqual(true);
+    });
+
+    it('should be noop when making multiple calls without refresh', () => {
       ptt.connect();
       const oldConnection = ptt._connection;
 
@@ -59,7 +70,7 @@ describe('Lychee', () => {
       const newConnection = ptt._connection;
 
       expect(newConnection).toBeA(Connection);
-      expect(newConnection !== oldConnection).toEqual(true);
+      expect(newConnection === oldConnection).toEqual(true);
     });
   });
 

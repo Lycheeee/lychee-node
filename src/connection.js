@@ -5,9 +5,12 @@ import Rx from 'rx';
 const PTT_HOST = 'ptt.cc';
 const PTT_PROT = 23;
 const PTT_BUFFER_DURATION = 2000;
-const debug = require('debug')('ly:connection');
+const debug = require('debug')('ly:Connection');
 
 class Connection {
+  /**
+   * Create a Lychee Connection
+   */
   constructor() {
     this._client = net.createConnection(PTT_PROT, PTT_HOST);
 
@@ -27,6 +30,9 @@ class Connection {
     .filter(msg => msg.length > 0);
   }
 
+  /**
+   * Tear down client and source
+   */
   end() {
     if (this._client) {
       this._client.end();
