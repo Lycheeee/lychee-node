@@ -25,7 +25,7 @@ class Lychee {
 
   disconnect() {
     this._connection.end();
-    this._connection = null;
+    delete this._connection;
   }
 }
 

@@ -5,6 +5,7 @@ import Rx from 'rx';
 const PTT_HOST = 'ptt.cc';
 const PTT_PROT = 23;
 const PTT_BUFFER_DURATION = 2000;
+const debug = require('debug')('ly:connection');
 
 class Connection {
   constructor() {
@@ -12,7 +13,7 @@ class Connection {
 
     // add client listeners
     this._client.addListener('end', () => {
-      console.log('end connection');
+      debug('end connection');
     });
 
     // set up _source
@@ -24,14 +25,16 @@ class Connection {
     .buffer(() => Rx.Observable.timer(PTT_BUFFER_DURATION))
     .map(msgs => msgs.reduce((acc, msg) => acc + msg, ''))
     .filter(msg => msg.length > 0);
-
-    this._source.subscribe((wave) => {
-      console.log(wave);
-    });
   }
 
   end() {
-    if (this._client) { this._client.end(); }
+    if (this._client) {
+      this._client.end();
+      delete this._client;
+
+      // TODO: remove subscribers
+      delete this._source;
+    }
   }
 }
 
