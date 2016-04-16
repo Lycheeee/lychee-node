@@ -1,3 +1,5 @@
+import Connection from './connection';
+
 class Lychee {
   /**
    * Create a Lychee PTT client
@@ -13,17 +15,28 @@ class Lychee {
 
     this._username = username;
     this._password = password;
-    this._connection = null;
   }
 
-  connect() {
-    // TODO: clean up possibily old connection
-    this._connection = { name: 'Mock Connection' };
+  /**
+   * Set up connection
+   * @param {boolean} refresh - The flag to indicate whether connection should be re-init or not
+   */
+  connect(refresh) {
+    if (this._connection) {
+      if (!refresh) {
+        return;
+      }
+      this.disconnect();
+    }
+    this._connection = new Connection();
   }
 
+  /**
+   * Tear down connection
+   */
   disconnect() {
-    // TODO: tear down
-    this._connection = null;
+    this._connection.end();
+    delete this._connection;
   }
 }
 
