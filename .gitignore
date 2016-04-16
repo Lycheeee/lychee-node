@@ -2,3 +2,5 @@ build/
 docs/
 node_modules/
 *.log
+.jshintignore
+.jshintrc
