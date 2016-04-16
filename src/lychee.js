@@ -11,8 +11,19 @@ class Lychee {
     if (!username) { throw new Error('#constructor: no username'); }
     if (!password) { throw new Error('#constructor: no password'); }
 
-    this.username = username;
-    this.password = password;
+    this._username = username;
+    this._password = password;
+    this._connection = null;
+  }
+
+  connect() {
+    // TODO: clean up possibily old connection
+    this._connection = { name: 'Mock Connection' };
+  }
+
+  disconnect() {
+    // TODO: tear down
+    this._connection = null;
   }
 }
 
