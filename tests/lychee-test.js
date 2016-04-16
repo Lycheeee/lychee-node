@@ -3,10 +3,11 @@
 
 import expect from 'expect';
 import Lychee from '../src/lychee';
+import Connection from '../src/connection';
 
 describe('Lychee', () => {
   describe('#constructor', () => {
-    it('should have correct shape', () => {
+    it('should have a correct shape', () => {
       expect(() => {
         const ptt = new Lychee({
           username: 'username',
@@ -14,7 +15,6 @@ describe('Lychee', () => {
         });
         expect(ptt._username).toEqual('username');
         expect(ptt._password).toEqual('password');
-        expect(ptt._connection).toNotExist();
       }).toNotThrow();
 
       expect(() => {
@@ -48,7 +48,7 @@ describe('Lychee', () => {
     it('should set up _connection', () => {
       ptt.connect();
 
-      expect(ptt._connection).toExist();
+      expect(ptt._connection).toBeA(Connection);
     });
 
     it('should set up a new connection when making multiple calls', () => {
@@ -58,7 +58,7 @@ describe('Lychee', () => {
       ptt.connect();
       const newConnection = ptt._connection;
 
-      expect(newConnection).toExist();
+      expect(newConnection).toBeA(Connection);
       expect(newConnection !== oldConnection).toEqual(true);
     });
   });

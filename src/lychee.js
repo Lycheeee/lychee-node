@@ -1,3 +1,5 @@
+import Connection from './connection';
+
 class Lychee {
   /**
    * Create a Lychee PTT client
@@ -18,11 +20,11 @@ class Lychee {
 
   connect() {
     // TODO: clean up possibily old connection
-    this._connection = { name: 'Mock Connection' };
+    this._connection = new Connection();
   }
 
   disconnect() {
-    // TODO: tear down
+    this._connection.end();
     this._connection = null;
   }
 }
